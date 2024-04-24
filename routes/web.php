@@ -5,4 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-//id== is parameter
+
+Route::get('marwa/{id}', function ($id) {
+    return "welcome to my first website " .$id;
+});
