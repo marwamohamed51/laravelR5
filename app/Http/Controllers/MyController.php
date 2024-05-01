@@ -10,4 +10,10 @@ class MyController extends Controller
     {
         return view('carvilla');
     }
+
+    public function formResult(Request $request){
+        $fname = $request->fname;
+        $lanme = $request->lname;
+        return view('formResult', compact('fname', 'lanme'));
+    }
 }
