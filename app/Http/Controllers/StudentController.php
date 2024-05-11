@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    private $columns = [
+        'studentName',
+        'age',
+        // 'created_at'
+    ];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $studentList = Student::get();
+        return view('studentList', compact('studentList'));
     }
 
     /**
@@ -20,7 +26,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('studentForm');
+        return view('addStudent');
     }
 
     /**
@@ -28,12 +34,14 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $student = new Student();
-        $student->studentName = $request->studentName;
-        $student->age =$request->age;
-        $student->save();
-        return view('studentResult');
+        // $student = new Student();
+        // $student->studentName = $request->studentName;
+        // $student->age =$request->age;
+        // $student->save();
+        // return view('studentResult');
         // return 'Data inserted successfully :);
+        Student::create($request->only($this->columns));
+        return redirect('studentList');
     }
 
     /**

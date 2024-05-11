@@ -5,9 +5,20 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
 
-//task3 --> student form
-Route::get('studentForm', [StudentController::class,'create']);
+// task4 --> Add/show student
+Route::get('addStudent', [StudentController::class,'create'])->name('addStudent');
+Route::get('studentList', [StudentController::class,'index'])->name('studentList');
 Route::post('studentResult',[StudentController::class,'store'])->name('studentResult');
+
+// session4 --> Add/show client
+// Route::get('addClient', [ClientController::class,'create'])->name('addClient');
+// Route::get('clientList', [ClientController::class,'index'])->name('clientList');
+// Route::post('clientResult',[ClientController::class,'store'])->name('clientResult');
+
+
+//task3 --> student form
+// Route::get('studentForm', [StudentController::class,'create']);
+// Route::post('studentResult',[StudentController::class,'store'])->name('studentResult');
 
 // Route::get('carvilla', [MyController::class, 'my_data']);
 // Route::get('insertClient', [ClientController::class, 'store']);
@@ -68,9 +79,5 @@ Route::get('/', function () {
 
 // Route::post('formResult',[MyController::class,'formResult'])->name('formResult');
 
-// session3 --> client form
-Route::get('addClient', [ClientController::class,'create'])->name('addClient');
-Route::get('clientList', [ClientController::class,'index'])->name('clientList');
-Route::post('clientResult',[ClientController::class,'store'])->name('clientResult');
 
 
