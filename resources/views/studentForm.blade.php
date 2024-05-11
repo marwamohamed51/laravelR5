@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h2>HTML Forms</h2>
+<h2>Student Form</h2>
 
 <form action="{{route('studentResult')}}" method="post">
     @csrf

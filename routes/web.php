@@ -13,9 +13,9 @@ Route::post('studentResult',[StudentController::class,'store'])->name('studentRe
 // Route::get('insertClient', [ClientController::class, 'store']);
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 //regular expression
@@ -68,8 +68,9 @@ Route::post('studentResult',[StudentController::class,'store'])->name('studentRe
 
 // Route::post('formResult',[MyController::class,'formResult'])->name('formResult');
 
-//session3 --> client form
-// Route::get('form', [ClientController::class,'create']);
-// Route::post('formResult',[ClientController::class,'store'])->name('formResult');
+// session3 --> client form
+Route::get('addClient', [ClientController::class,'create'])->name('addClient');
+Route::get('clientList', [ClientController::class,'index'])->name('clientList');
+Route::post('clientResult',[ClientController::class,'store'])->name('clientResult');
 
 
