@@ -13,7 +13,7 @@
 <body>
 
     <!-- navbar start -->
-    @include('includes.nav')
+    @include('includes.navClient')
     <!-- navbar end -->
 
     <div class="container">
