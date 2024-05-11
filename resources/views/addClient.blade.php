@@ -22,13 +22,13 @@
 
     <form action="{{route('clientResult')}}" method="post">
       @csrf
-      <label for="fname">name:</label><br>
+      <label for="fname">name</label><br>
       <input type="text" id="fname" name="clientName" class="form-control" value=""><br>
-      <label for="lname">phone:</label><br>
+      <label for="lname">phone</label><br>
       <input type="text" id="lname" name="phone" class="form-control" value=""><br>
-      <label for="lname">email:</label><br>
+      <label for="lname">email</label><br>
       <input type="text" id="lname" name="email" class="form-control" value=""><br>
-      <label for="lname">website:</label><br>
+      <label for="lname">website</label><br>
       <input type="text" id="lname" name="website" class="form-control" value=""><br><br>
       <input type="submit" value="Submit" class="btn btn-primary btn-block">
     </form>

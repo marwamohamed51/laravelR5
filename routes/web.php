@@ -11,9 +11,9 @@ Route::get('studentList', [StudentController::class,'index'])->name('studentList
 Route::post('studentResult',[StudentController::class,'store'])->name('studentResult');
 
 // session4 --> Add/show client
-// Route::get('addClient', [ClientController::class,'create'])->name('addClient');
-// Route::get('clientList', [ClientController::class,'index'])->name('clientList');
-// Route::post('clientResult',[ClientController::class,'store'])->name('clientResult');
+Route::get('addClient', [ClientController::class,'create'])->name('addClient');
+Route::get('clientList', [ClientController::class,'index'])->name('clientList');
+Route::post('clientResult',[ClientController::class,'store'])->name('clientResult');
 
 
 //task3 --> student form
