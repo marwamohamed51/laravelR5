@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Add client</title>
+  <title>Edit client</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -18,18 +18,19 @@
 
   <div class="container" style="margin-left: 10px;">
 
-    <h2>Add Client</h2>
+    <h2>Edit Client</h2>
 
-    <form action="{{route('clientResult')}}" method="post">
+    <form action="{{ route('updateClient', $client->id) }}" method="post">
       @csrf
+      @method('put')
       <label for="fname">name</label><br>
-      <input type="text" id="fname" name="clientName" required class="form-control" value=""><br>
+      <input type="text" id="fname" name="clientName" class="form-control" value="{{$client->clientName}}"><br>
       <label for="lname">phone</label><br>
-      <input type="text" id="lname" name="phone" required class="form-control" value=""><br>
+      <input type="text" id="lname" name="phone" class="form-control" value="{{$client->phone}}"><br>
       <label for="lname">email</label><br>
-      <input type="text" id="lname" name="email" required class="form-control" value=""><br>
+      <input type="text" id="lname" name="email" class="form-control" value="{{$client->email}}"><br>
       <label for="lname">website</label><br>
-      <input type="text" id="lname" name="website" required class="form-control" value=""><br><br>
+      <input type="text" id="lname" name="website" class="form-control" value="{{$client->website}}"><br><br>
       <input type="submit" value="Submit" class="btn btn-primary btn-block">
     </form>
 

@@ -5,14 +5,27 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
 
-// task4 --> Add/show student
+// task5
 Route::get('addStudent', [StudentController::class,'create'])->name('addStudent');
 Route::get('studentList', [StudentController::class,'index'])->name('studentList');
+Route::get('editStudent/{id}', [StudentController::class,'edit'])->name('editStudent');
+Route::put('updateStudent/{id}', [StudentController::class,'update'])->name('updateStudent');
+Route::get('showStudent/{id}', [StudentController::class,'show'])->name('showStudent');
+Route::delete('deleteStudent', [StudentController::class,'destroy'])->name('deleteStudent');
 Route::post('studentResult',[StudentController::class,'store'])->name('studentResult');
+
+// task4 --> Add/show student
+// Route::get('addStudent', [StudentController::class,'create'])->name('addStudent');
+// Route::get('studentList', [StudentController::class,'index'])->name('studentList');
+// Route::post('studentResult',[StudentController::class,'store'])->name('studentResult');
 
 // session4 --> Add/show client
 Route::get('addClient', [ClientController::class,'create'])->name('addClient');
 Route::get('clientList', [ClientController::class,'index'])->name('clientList');
+Route::get('editClient/{id}', [ClientController::class,'edit'])->name('editClient');
+Route::put('updateClient/{id}', [ClientController::class,'update'])->name('updateClient');
+Route::get('showClient/{id}', [ClientController::class,'show'])->name('showClient');
+Route::delete('deleteClient', [ClientController::class,'destroy'])->name('deleteClient');
 Route::post('clientResult',[ClientController::class,'store'])->name('clientResult');
 
 

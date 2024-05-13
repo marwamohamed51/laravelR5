@@ -17,13 +17,16 @@
     <!-- navbar end -->
 
     <div class="container">
+        @include('includes.alert')
         <h2>Student data</h2>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Student Name</th>
                     <th>Age</th>
-                    <!-- <th>created At</th> -->
+                    <th>Edit</th>
+                    <th>Show</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +35,16 @@
                     <tr>
                         <td>{{ $student->studentName }}</td>
                         <td>{{ $student->age }}</td>
-                        <!-- <td>{{ $student->created_at }}</td> -->
+                        <td><a href="{{ route('editStudent', $student->id) }}">Edit</a></td>
+                        <td><a href="{{ route('showStudent', $student->id) }}">Show</a></td>
+                        <td>
+                            <form action="{{ route('deleteStudent') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" value="{{ $student->id }}" name="id">
+                                <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete?')">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
 

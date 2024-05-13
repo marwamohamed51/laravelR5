@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -40,8 +41,16 @@ class StudentController extends Controller
         // $student->save();
         // return view('studentResult');
         // return 'Data inserted successfully :);
-        Student::create($request->only($this->columns));
-        return redirect('studentList');
+        // Student::create($request->only($this->columns));
+        // return redirect('studentList');
+        DB::table('students')->insert([
+            'studentName' => $request['studentName'],
+            'age' => $request['age'],
+            // Add more fields if necessary
+        ]);
+
+        return redirect('studentList')->with('success', 'New student added successfully.');
+
     }
 
     /**
@@ -49,7 +58,8 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        DB::table('Students')->where('id', $id)->first();
+        return view('showStudent', compact('student'));
     }
 
     /**
@@ -57,7 +67,8 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('editStudent', compact('student'));
     }
 
     /**
@@ -65,14 +76,18 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $studentData = $request->only($this->columns); // Assuming $this->columns contains the columns you want to update
+        DB::table('students')->where('id', $id)->update($studentData);
+        return redirect('studentList')->with('success', 'Student Data updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        DB::table('students')->where('id', $id)->delete();
+        return redirect('studentList')->with('success', 'Student Data deleted successfully.');
     }
 }

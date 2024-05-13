@@ -42,7 +42,8 @@ class ClientController extends Controller
         // $client->website =$request->website;
         // $client->save();
         Client::create($request->only($this->columns));
-        return redirect('clientList');
+        return redirect()->route('clientList')->with('success', 'New Client data added successfully.');
+        // return redirect('clientList');
 
     }
 
@@ -51,7 +52,8 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view('showClient', compact('client'));
     }
 
     /**
@@ -59,7 +61,8 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view('editClient', compact('client'));
     }
 
     /**
@@ -67,14 +70,19 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+    CLient::where('id',$id)->update($request->only($this->columns));
+    // return redirect('clientList');
+    return redirect()->route('clientList')->with('success', 'Client data Updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        Client::where('id', $id)->delete();
+        // return redirect('clientList');
+        return redirect()->route('clientList')->with('success', 'Client Deleted successfully.');
     }
 }

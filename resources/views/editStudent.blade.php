@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Add Student</title>
+    <title>Edit student</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -17,17 +17,24 @@
     <!-- navbar end -->
 
     <div class="container" style="margin-left: 10px;">
-        <h2>Add Student</h2><br>
 
-        <form action="{{route('studentResult')}}" method="post">
+        <h2>Edit student</h2>
+
+        <form action="{{ route('updateStudent', $student->id) }}" method="post">
             @csrf
+            @method('put')
             <label for="studentName">Student name</label><br>
-            <input type="text" id="studentName" required name="studentName" class="form-control" value=""><br>
+            <input type="text" id="studentName" name="studentName" class="form-control"
+                value="{{ $student->studentName }}"><br>
             <label for="age">Age</label><br>
-            <input type="text" id="age" name="age" required class="form-control" value=""><br><br>
-            <input type="submit" value="Submit"  class="btn btn-primary btn-block">
+            <input type="text" id="age" name="age" class="form-control" value="{{ $student->age }}"><br>
+            <input type="submit" value="Submit" class="btn btn-primary btn-block">
+
         </form>
+
     </div>
+
+
 
 </body>
 
