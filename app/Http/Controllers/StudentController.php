@@ -58,7 +58,7 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        DB::table('Students')->where('id', $id)->first();
+        $student =  DB::table('Students')->where('id', $id)->first();
         return view('showStudent', compact('student'));
     }
 
