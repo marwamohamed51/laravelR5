@@ -19,13 +19,23 @@
     <div class="container" style="margin-left: 10px;">
         <h2>Add Student</h2><br>
 
-        <form action="{{route('studentResult')}}" method="post">
+        <form action="{{ route('studentResult') }}" method="post">
             @csrf
             <label for="studentName">Student name</label><br>
-            <input type="text" id="studentName" required name="studentName" class="form-control" value=""><br>
+            <p style="color: red">
+                @error('studentName')
+                    {{ $message }}
+                @enderror
+            </p>
+            <input type="text" id="studentName" name="studentName" class="form-control" value="{{ old('studentName') }}"><br>
             <label for="age">Age</label><br>
-            <input type="text" id="age" name="age" required class="form-control" value=""><br><br>
-            <input type="submit" value="Submit"  class="btn btn-primary btn-block">
+            <p style="color: red">
+                @error('age')
+                    {{ $message }}
+                @enderror
+            </p>
+            <input type="text" id="age" name="age" class="form-control" value="{{ old('age') }}"><br><br>
+            <input type="submit" value="Submit" class="btn btn-primary btn-block">
         </form>
     </div>
 

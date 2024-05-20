@@ -6,6 +6,9 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
 
 // task5
+Route::get('trashStudent', [StudentController::class,'trash'])->name('trashStudent');
+Route::get('restoreStudent/{id}', [StudentController::class,'restore'])->name('restoreStudent');
+Route::delete('forceDeleteStudent', [StudentController::class,'forceDelete'])->name('forceDeleteStudent');
 Route::get('addStudent', [StudentController::class,'create'])->name('addStudent');
 Route::get('studentList', [StudentController::class,'index'])->name('studentList');
 Route::get('editStudent/{id}', [StudentController::class,'edit'])->name('editStudent');
@@ -25,7 +28,10 @@ Route::get('clientList', [ClientController::class,'index'])->name('clientList');
 Route::get('editClient/{id}', [ClientController::class,'edit'])->name('editClient');
 Route::put('updateClient/{id}', [ClientController::class,'update'])->name('updateClient');
 Route::get('showClient/{id}', [ClientController::class,'show'])->name('showClient');
+Route::get('trashClient', [ClientController::class,'trash'])->name('trashClient');
+Route::get('restoreClient/{id}', [ClientController::class,'restore'])->name('restoreClient');
 Route::delete('deleteClient', [ClientController::class,'destroy'])->name('deleteClient');
+Route::delete('forceDeleteClient', [ClientController::class,'forceDelete'])->name('forceDeleteClient');
 Route::post('clientResult',[ClientController::class,'store'])->name('clientResult');
 
 

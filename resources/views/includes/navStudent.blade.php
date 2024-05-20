@@ -11,8 +11,8 @@
       <li class="{{ Request::is('studentList') ? 'active' : '' }}">
         <a href="{{route('studentList')}}">List</a>
       </li>
-      <li class="{{ Request::is('/') ? 'active' : '' }}">
-        <a href="#">Page 2</a>
+      <li class="{{ Request::is('trashStudent') ? 'active' : '' }}">
+        <a href="{{route('trashStudent')}}">Trash</a>
       </li>
       <li class="{{ Request::is('/') ? 'active' : '' }}">
         <a href="#">Page 3</a>

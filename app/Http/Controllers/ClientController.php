@@ -41,7 +41,14 @@ class ClientController extends Controller
         // $client->email =$request->email;
         // $client->website =$request->website;
         // $client->save();
-        Client::create($request->only($this->columns));
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone'=>'required|min:11',
+            'email'=>'required|email:rfc',
+            'website'=>'required',
+        ]);
+        Client::create($data);
+        // Client::create($request->only($this->columns));
         return redirect()->route('clientList')->with('success', 'New Client data added successfully.');
         // return redirect('clientList');
 
@@ -70,9 +77,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-    CLient::where('id',$id)->update($request->only($this->columns));
-    // return redirect('clientList');
-    return redirect()->route('clientList')->with('success', 'Client data Updated successfully.');
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone'=>'required|min:11',
+            'email'=>'required|email:rfc',
+            'website'=>'required',
+        ]);
+        CLient::where('id', $id)->update($data);
+        return redirect()->route('clientList')->with('success', 'Client data Updated successfully.');
     }
 
     /**
@@ -85,4 +97,33 @@ class ClientController extends Controller
         // return redirect('clientList');
         return redirect()->route('clientList')->with('success', 'Client Deleted successfully.');
     }
+
+    /**
+     * trash.
+     */
+    public function trash()
+    {
+        $trashed = Client::onlyTrashed()->get();
+        return view('trashClient', compact('trashed'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function restore(string $id)
+    {
+        Client::where('id', $id)->restore();
+        return redirect('clientList');
+    }
+    /**
+     * force delete.
+     */
+    public function forceDelete(Request $request)
+    {
+        $id = $request->id;
+        Client::where('id', $id)->forceDelete();
+        // return redirect('clientList');
+        return redirect()->route('trashClient')->with('success', 'Client Deleted successfully.');
+    }
+
 }
