@@ -26,6 +26,9 @@
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Website</th>
+                    <th>City</th>
+                    <th>Active</th>
+                    <th>Image</th>
                     <th>Edit</th>
                     <th>Show</th>
                     <th>Delete</th>
@@ -39,6 +42,15 @@
                         <td>{{ $client->phone }}</td>
                         <td>{{ $client->email }}</td>
                         <td>{{ $client->website }}</td>
+                        <td>{{ $client->city }}</td>
+                        <td>{{ $client->active ? 'Yes' : 'No'}}</td>
+                        <td>
+                            @if ($client->image)
+                                <img src="{{ asset('assets/images/' . $client->image) }}" alt="{{ old('clientName', $client->clientName) }}" width="50">
+                            @else
+                                No image
+                            @endif
+                        </td>
                         <td><a href="{{ route('editClient', $client->id) }}">Edit</a></td>
                         <td><a href="{{ route('showClient', $client->id) }}">Show</a></td>
                         <td>

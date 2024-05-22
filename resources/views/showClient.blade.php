@@ -22,6 +22,7 @@
 <hr>
 <h4>Website :{{$client->website}}</h4>
 <hr>
+<p><img src="{{ asset('assets/images/' . $client->image) }}" alt="{{ old('clientName', $client->clientName) }}" width="200"></p>
 </div>
 
 </body>
