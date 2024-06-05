@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\uploadFile;
 
 class ClientController extends Controller
 {
+    use uploadFile;
     private $columns = [
         'clientName',
         'phone',
@@ -54,10 +56,11 @@ class ClientController extends Controller
             'image' => 'required',
         ], $message);
 
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
+        // $imgExt = $request->image->getClientOriginalExtension();
+        // $fileName = time() . '.' . $imgExt;
+        // $path = 'assets/images';
+        // $request->image->move($path, $fileName);
+        $fileName = $this->upload($request->image, 'assets/images');
 
         $data['image'] = $fileName;
 
@@ -106,9 +109,11 @@ class ClientController extends Controller
         $oldImage = Client::find($id)->image;
         // Check if image is uploaded
         if ($request->image != '') {
-            $fileName = time() . '.' . $request->image->getClientOriginalExtension();
+            // $fileName = time() . '.' . $request->image->getClientOriginalExtension();
             $path = 'assets/images';
-            $request->image->move($path, $fileName);
+            // $request->image->move($path, $fileName);
+            $fileName = $this->upload($request->image, 'assets/images');
+
             $data['image'] = $fileName;
 
             // Delete the old image if it exists
@@ -119,6 +124,18 @@ class ClientController extends Controller
             $data['image'] = $oldImage;
         }
 
+        // $client = Client::findOrFail($id);
+        // if($request->image != ''){
+        //     $path = public_path(). 'assets/images';
+        //     if($client->image != '' && $client->image != null){
+        //         $old_image = $path.$client->image;
+        //         unlink($old_image);
+        //     }
+        //     $fileName = time() . '.' . $request->image->getClientOriginalExtension();
+        //     $path = $request->image->storeAs('assets/images' , $fileName);
+        //     $request->image->move($path, $fileName);
+        //     $data['image'] = $fileName;
+        // }
         // Handle the 'active' field
         $data['active'] = $request->has('active');
 
