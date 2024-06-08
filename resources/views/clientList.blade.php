@@ -42,7 +42,7 @@
                         <td>{{ $client->phone }}</td>
                         <td>{{ $client->email }}</td>
                         <td>{{ $client->website }}</td>
-                        <td>{{ $client->city }}</td>
+                        <td>{{ $client->city->city }}</td>
                         <td>{{ $client->active ? 'Yes' : 'No'}}</td>
                         <td>
                             @if ($client->image)

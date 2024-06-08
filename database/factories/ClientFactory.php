@@ -15,15 +15,17 @@ class ClientFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'name' => $this->faker->company,
-            'email' => $this->faker->unique()->companyEmail,
-            'phone' => $this->faker->phoneNumber,
-            'city' => $this->faker->city,
-            'website' => $this->faker->url,
-            'image' => $this->faker->imageUrl()
+            'clientName' => fake()->name(),
+            'phone' => fake()->phoneNumber(),
+            'email' => fake()->unique()->safeEmail(),
+            'website' => fake()->url(),
+            'city_id' => fake()->numberBetween(1, 20),
+            'image' => fake()->imageUrl(640, 480),
+            'active' => fake()->numberBetween(0, 1),
+            'address' => fake()->address(),
         ];
     }
 
