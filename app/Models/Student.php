@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Courses;
 
 class Student extends Model
 {
@@ -12,6 +13,10 @@ class Student extends Model
     protected $fillable = [
         'studentName',
         'age',
-        // 'created_at'
     ];
+
+    public function courses()
+    {
+        return $this->belongsToMany(Courses::class);
+    }
 }
