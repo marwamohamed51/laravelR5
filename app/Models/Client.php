@@ -15,6 +15,8 @@ class Client extends Model
         'phone',
         'email',
         'website',
+        // 'message',
+        // 'subject',
         'city_id',
         'active',
         'image',

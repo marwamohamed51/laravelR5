@@ -1,30 +1,67 @@
-<h1>Contact Form</h1>
-<form id="contact_form" name="contact_form" method="post">
-    <div class="mb-5 row">
-        <div class="col">
-            <label>First Name</label>
-            <input type="text" required maxlength="50" class="form-control" id="first_name" name="first_name">
-        </div>
-        <div class="col">
-            <label>Last Name</label>
-            <input type="text" required maxlength="50" class="form-control" id="last_name" name="last_name">
-        </div>
-    </div>
-    <div class="mb-5 row">
-        <div class="col">
-            <label for="email_addr">Email address</label>
-            <input type="email" required maxlength="50" class="form-control" id="email_addr" name="email"
-                placeholder="name@example.com">
-        </div>
-        <div class="col">
-            <label for="phone_input">Phone</label>
-            <input type="tel" required maxlength="50" class="form-control" id="phone_input" name="Phone"
-                placeholder="Phone">
-        </div>
-    </div>
-    <div class="mb-5">
-        <label for="message">Message</label>
-        <textarea class="form-control" id="message" name="message" rows="5"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary px-4 btn-lg">Post</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<h3>Contact Form</h3>
+
+<div class="container">
+  <form method="POST" action="{{ route('contact.submit') }}">
+    @csrf
+    <label for="clientName">Name</label>
+    <input type="text" id="clientName" name="clientName" placeholder="Your name..">
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Your email..">
+
+    <label for="phone">Phone number</label>
+    <input type="phone" id="phone" name="phone" placeholder="Your phone number..">
+
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" name="subject" placeholder="Your subject..">
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>

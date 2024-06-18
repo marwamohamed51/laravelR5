@@ -37,20 +37,14 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control     name="password"
-                                        autocomplete="current-password">
+                                    <input id="password" type="password"
+                                        class="form-control @if ($errors->has('password')) has-error @endif"
+                                        name="password" autocomplete="current-password">
+
+
                                     @if ($errors->has('password'))
-                                        <span class="help">{{ $errors->first('password') }}
-                                        </span>
+                                        <span class="help">{{ $errors->first('password') }}</span>
                                     @endif
-                                    {{-- @error('password') is-invalid @enderror" --}}
-
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
                             </div>
 
