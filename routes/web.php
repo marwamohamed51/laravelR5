@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Auth\LoginController;
 
 // task5
 Route::get('trashStudent', [StudentController::class,'trash'])->name('trashStudent');
@@ -24,7 +25,7 @@ Route::post('studentResult',[StudentController::class,'store'])->name('studentRe
 
 // session4 --> Add/show client
 Route::get('addClient', [ClientController::class,'create'])->name('addClient');
-Route::get('clientList', [ClientController::class,'index'])->name('clientList');
+Route::get('clientList', [ClientController::class,'index'])->middleware('verified')->name('clientList');
 Route::get('editClient/{id}', [ClientController::class,'edit'])->name('editClient');
 Route::put('updateClient/{id}', [ClientController::class,'update'])->name('updateClient');
 Route::get('showClient/{id}', [ClientController::class,'show'])->name('showClient');
@@ -100,3 +101,16 @@ Route::get('/', function () {
 
 
 
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('mySession',[MyController::class,'mySession']);
+Route::get('restoreSession',[MyController::class,'restoreSession']);
+Route::get('deleteSession',[MyController::class,'deleteSession']);
+Route::get('sendClientMail',[MyController::class,'sendClientMail']);
+
+
+
+// web.php
+Route::post('login', [LoginController::class, 'login'])->name('login');
